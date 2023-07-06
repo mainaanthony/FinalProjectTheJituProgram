@@ -2,19 +2,18 @@ const mssql = require('mssql')
 const config = require('../Config/config')
 
 
-async function getAUser(loginInput){
+async function getAUser(loginInput, pool){
 
 
-    let sql =  await mssql.connect(config)
+    //let sql =  await mssql.connect(config)
 
 
-    if(sql.connected){
-
+    if(pool.connected){
+        const pool = req.pool;
         try{
-            let results = await sql.request()
+            let results = await pool.request()
             .input("LoginInput", loginInput)
             .execute("UserLogin")
-
             let user = results.recordset[0];
             return user
         }catch(error){

@@ -29,6 +29,9 @@ const new_user_schema = joi.object({
         .required()
         .min(2)
         ,    
+    UserName: joi.string()
+        .min(3)
+        .required(),    
     c_password: joi.ref('Password')
 
 

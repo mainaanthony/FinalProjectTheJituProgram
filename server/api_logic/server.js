@@ -15,6 +15,7 @@ app.use(express.json())
 //routers 
 const postRouter = require('./routes/postRouter')
 const postHandlerRouter = require('./routes/handleUploading')
+const followRouter = require('./routes/followRouter')
 const { truncate } = require('fs')
 
 
@@ -54,7 +55,7 @@ const { truncate } = require('fs')
 
 // })
 
-
+app.use('/aboutFollow', followRouter)
 app.use('/posts', postRouter)
 app.use('/new', postHandlerRouter)
 

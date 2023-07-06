@@ -18,58 +18,96 @@ module.exports = {
 
     loginUser: async(req, res) => {
         // Login validation
+
+        const { loginInput, Password } = req.params
+
+      
+
+     try{
+      const pool = req.pool
+      
+
+      if(pool.connected){
+        const pool = req.pool;
+            let results = await pool.request()
+            .input("LoginInput", loginInput)
+            .execute("UserLogin");
+            console.log(results)
+            let user = results.recordset[0];
+            
+            if(user){
+
+              let password_match = await bcrypt.compare(Password,user.Password)
+              
+              if(password_match ){
+                console.log("welcome") 
+               req.session.authorized = true
+               req.session.user = user
+      
+      
+               //crazy start
+               
+      
+      
+               
+             
+      
+      
+               //crazy end
+               res.status(200).json({ success: "true", message: "Login Successful" })
+                         
+            
+              }else{res.status(404).json({
+                       success: "false",
+                       message: "Password does not match"
+                   })
+                  }
+      
+              
+             }else{
+      
+              res.status(404).json({
+                success: false,
+                message: "No user found"
+              });
+             }
+    } else{
+        return null
+    }
+      //  console.log(user)
+
+     }catch(error){
+      console.log(error)
+     }
+
+
+
  
    let sql = await mssql.connect(config);
-   if (sql.connect) {
-       const { loginInput, Password } = req.params
-       console.log(req.body)
 
-       let user = await getAUser(loginInput)
-       console.log(user)
-       console.log(user.Password)
-       if (user) {
-           let password_match = await bcrypt.compare(Password,user.Password)
-           if(password_match ){
-             console.log("welcome") 
-            req.session.authorized = true
-            req.session.user = user
+     
 
-
-            //crazy start
-            
-
-
-            
+  //  if (sql.connect) {
+       
+       
+  //      if (user) {
           
-
-
-            //crazy end
-            res.status(200).json({ success: "true", message: "Login Successful" })
-                      
+            
+  //      } else {
          
-           }else{res.status(404).json({
-                    success: "false",
-                    message: "Password does not match"
-                })
-               } 
-       } else {
-         res.status(404).json({
-           success: false,
-           message: "No user found"
-         });
-       }
-     } 
-    else {
-     res.status(404).json({
-       success: false,
-       message: "Internal Server problem"
-     });
-   }
+  //      }
+  //    } 
+  //   else {
+  //    res.status(404).json({
+  //      success: false,
+  //      message: "Internal Server problem"
+  //    });
+  //  }
    },
 
 
    logout: async(req, res)=>{
-    console.log(req.session)
+    console.log(req.pool.connected);
 
     req.session.destroy((err) =>{
         if(err){
@@ -102,10 +140,11 @@ try{
 let { value } = newUserValidator(user)
 console.log(value)
 let hashed_pwd = await bcrypt.hash(user.Password, 8)
-let sql = await mssql.connect(config)
-   if(sql.connected) {
 
-     let results = await sql.request()
+const pool = req.pool
+   if(pool.connected) {
+
+     let results = await pool.request()
      .input("Name", value.Name )
      .input("Email", value.Email)
      .input("Password", hashed_pwd)
@@ -113,6 +152,7 @@ let sql = await mssql.connect(config)
      .input("DateOfBirth", value.DateOfBirth)
      .input("Gender", value.Gender)
      .input("Country", value.Country)
+     .input("UserName", value.UserName)
      .execute('CreateNewUser')
 
      console.log(results)

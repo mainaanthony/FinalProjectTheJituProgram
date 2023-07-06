@@ -9,10 +9,12 @@ module.exports = {
     
             if(sql.connected){
                const request = sql.request();
+
+               const userName = 'John Kiriamiti'
                
-               request.input('UserId', 71)
+               request.input('userName', userName )
     
-               let result = await request.execute('GetFollowedUsers');
+               let result = await request.execute('GetUserFollowers');
                console.log(result)
     
                res.json({
@@ -28,16 +30,16 @@ module.exports = {
        
        },
 
-     getFollowers: async(req, res)=>{
+     getFollowing: async(req, res)=>{
         try {
             let sql = await mssql.connect(config)
     
             if(sql.connected){
                const request = sql.request();
                
-               request.input('UserId', 71)
+               request.input('userName', 'John Kiriamiti')
     
-               let result = await request.execute('GetFollowers');
+               let result = await request.execute('GetUserFollowing');
                console.log(result)
     
                res.json({
@@ -52,7 +54,7 @@ module.exports = {
        }
      },
      
-     followUser: async(req, res)=>{
+     getFollowers: async(req, res)=>{
 
         try {
             let sql = await mssql.connect(config)
@@ -60,11 +62,13 @@ module.exports = {
             if(sql.connected){
                const request = sql.request();
                
-               request.input('UserId', 71)
-           request.input('FollowerUserId', 70)
+               const userName = 'John Kiriamiti'
+               
+               request.input('userName', userName )
+          
 
     
-               let result = await request.execute('GetFollowers');
+               let result = await request.execute('GetUserFollowers');
                console.log(result)
     
                res.json({
@@ -105,7 +109,35 @@ module.exports = {
            res.send(error.message)
            
        }
+     },
+
+
+     followUser: async(req, res)=>{
+        try {
+            let sql = await mssql.connect(config)
+    
+            if(sql.connected){
+               const request = sql.request();
+               
+               request.input('UserId', 71)
+           request.input('FollowerUserId', 70)
+
+    
+               let result = await request.execute('GetFollowers');
+               console.log(result)
+    
+               res.json({
+                   success: true,
+                   message: "Retrieved users that follow you",
+                   data: result.recordset
+               })
+            }
+       } catch (error) {
+           res.send(error.message)
+           
+       }
      }
+
 
 
 

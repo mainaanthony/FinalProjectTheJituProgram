@@ -6,10 +6,10 @@ const { sessionHandler } = require('../middlewares/sessionHandler')
 const {createNewPost} = require('../Controllers/handleUploading')
 
 
-
+postHandlerRouter.use(sessionHandler)
 postHandlerRouter.post('/Post', createNewPost);
 //postHandlerRouter.get('/feed', GetPostsFeed)
 
-//postHandlerRouter.use(sessionHandler)
+//
 //postHandlerRouter.get("/logout", logout)
 module.exports = postHandlerRouter
