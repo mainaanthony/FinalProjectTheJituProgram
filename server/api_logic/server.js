@@ -13,9 +13,13 @@ app.use(express.json())
 
 
 //routers 
-const postRouter = require('./routes/postRouter')
-const postHandlerRouter = require('./routes/handleUploading')
+const feedRouter = require('./routes/feedRouter')
+const postHandlerRouter = require('./routes/postHandler')
 const followRouter = require('./routes/followRouter')
+const commentRouter = require('./routes/commentsRouter')
+const replyRouter = require('./routes/replyRouter')
+const notificationsRouter = require('./routes/notificationsRouter')
+const profileRouter = require('./routes/profileRouter')
 const { truncate } = require('fs')
 
 
@@ -56,8 +60,12 @@ const { truncate } = require('fs')
 // })
 
 app.use('/aboutFollow', followRouter)
-app.use('/posts', postRouter)
+app.use('/posts', feedRouter)
 app.use('/new', postHandlerRouter)
+app.use('/comments', commentRouter)
+app.use('/replies', replyRouter)
+app.use('/profile', profileRouter)
+app.use('/notify',notificationsRouter)
 
 // app.use("*",(req,res, next)=>{
    

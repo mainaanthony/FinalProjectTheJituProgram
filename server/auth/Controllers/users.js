@@ -16,94 +16,59 @@ module.exports = {
 
 
 
-    loginUser: async(req, res) => {
-        // Login validation
-
-        const { loginInput, Password } = req.params
-
-      
-
-     try{
-      const pool = req.pool
-      
-
-      if(pool.connected){
-        const pool = req.pool;
-            let results = await pool.request()
-            .input("LoginInput", loginInput)
-            .execute("UserLogin");
-            console.log(results)
-            let user = results.recordset[0];
-            
-            if(user){
-
-              let password_match = await bcrypt.compare(Password,user.Password)
-              
-              if(password_match ){
-                console.log("welcome") 
-               req.session.authorized = true
-               req.session.user = user
-      
-      
-               //crazy start
-               
-      
-      
-               
-             
-      
-      
-               //crazy end
-               res.status(200).json({ success: "true", message: "Login Successful" })
-                         
-            
-              }else{res.status(404).json({
-                       success: "false",
-                       message: "Password does not match"
-                   })
-                  }
-      
-              
-             }else{
-      
-              res.status(404).json({
-                success: false,
-                message: "No user found"
-              });
-             }
-    } else{
-        return null
+  loginUser: async (req, res) => {
+    // Login validation
+    const { loginInput, Password } = req.params;
+  
+    try {
+      const pool = req.pool;
+  
+      if (pool.connected) {
+        let results = await pool
+          .request()
+          .input("LoginInput", loginInput)
+          .execute("UserLogin");
+  
+        // Check if the result set is empty
+        if (!results.recordset || results.recordset.length === 0) {
+          res.status(404).json({
+            success: false,
+            message: "Invalid email or username",
+          });
+          return;
+        }
+  
+        let user = results.recordset[0];
+  
+        let password_match = await bcrypt.compare(Password, user.Password);
+  
+        if (password_match) {
+          console.log("Welcome");
+          req.session.authorized = true;
+          req.session.user = user;
+  
+          res.status(200).json({ success: true, message: "Login Successful" });
+        } else {
+          res.status(404).json({
+            success: false,
+            message: "Password does not match",
+          });
+        }
+      } else {
+        res.status(500).json({
+          success: false,
+          message: "Error connecting to the database",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        message: "An error occurred during login",
+      });
     }
-      //  console.log(user)
-
-     }catch(error){
-      console.log(error)
-     }
-
-
-
- 
-   let sql = await mssql.connect(config);
-
-     
-
-  //  if (sql.connect) {
-       
-       
-  //      if (user) {
-          
-            
-  //      } else {
-         
-  //      }
-  //    } 
-  //   else {
-  //    res.status(404).json({
-  //      success: false,
-  //      message: "Internal Server problem"
-  //    });
-  //  }
-   },
+  }
+  ,
 
 
    logout: async(req, res)=>{
@@ -177,8 +142,7 @@ const pool = req.pool
 
 
 
-    //login user
-   
+  
     
 
 
