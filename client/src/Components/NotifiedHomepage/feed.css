@@ -1,0 +1,53 @@
+.feed{
+    flex:0.6;
+    border-right: 2px solid grey;
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+    border-radius: 20px 20px 20px 20px;
+    overflow-y:scroll;
+    background-color: #EADDCA; ;
+    margin-top: 20px;
+    
+}
+/* min-width: 500px; */
+
+
+
+
+
+/* background-color: #785189; */
+
+/* check on the min-width mundcal */
+.feed{
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+.feed::-webkit-scrollbar{
+    display: none;
+}
+
+
+.feed_header{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index:100;
+    border: 1px solid var(--twitter-background)
+    padding
+}
+
+
+
+
+
+
+
+.feed_header > h2{
+    font-size: 20px;
+    font-weight: 800px;
+    margin-left: 10px;
+}

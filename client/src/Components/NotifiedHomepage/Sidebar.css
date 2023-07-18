@@ -1,0 +1,170 @@
+.sidebar{
+    border: 1px solid var(--twitter-background);
+    flex: 0.2;
+    margin-top: 20px;
+    padding-left: 20px;
+    border-radius: 10px 10px 10px 10px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #EADDCA;
+    
+    }
+
+    /* min-width: 250px; */
+
+
+
+    .profile{
+        padding: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .profile .userDetails{
+        flex:1;
+        margin-left: 20px;
+        font-size: 20px;
+        border: none;
+        
+    }
+
+   
+    .profile_pic{
+        align-self: center;
+        border-radius: 50%;
+        width:100px;
+        height: 100px;
+    }
+
+    
+
+    .userName{
+        color:grey;
+      
+    }
+    .postFollowDetails{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .postNameDetails{
+      display: flex;
+      flex-direction: column;
+      
+     
+  }
+
+
+    .top_header{
+        border-radius: 10px 10px 10px 10px;
+        border: 1px solid black;
+        height: fit-content;
+    } 
+
+    .links{
+
+        border-radius: 10px 10px 10px 10px;
+        border: 1px solid black;
+        
+
+    }
+    
+    .sidebar_twitterIcon{
+    color: var(--twitter-color);
+    }
+    
+    
+    .sidebar_tweet{
+        background-color: var(--twitter-color);
+        border: none !important;
+        color: white !important;
+        font-weight: 900 !important;
+        text-transform: inherit !important;
+        border-radius: 30px;
+        height: 50px;
+        margin-top: 20px;
+    }
+
+
+
+     
+    @media screen and (max-width: 1073px) and (min-width: 750px) {
+        .top_header,
+        .postFollowDetails {
+          display: none;
+        }
+      
+        .links {
+            display: flex;
+            margin-top: 10px;
+            flex-direction: column;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3em;
+        }
+      
+        .sidebarOption {
+            margin-top: 20px;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5em;
+        }
+      
+        .sidebarOption > h2 {
+          display: inline;
+        }
+      }
+
+      @media screen and (max-width: 750px) {
+
+        .top_header,
+        .postFollowDetails {
+          display: none;
+        }
+        .sidebar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: none;
+            margin-top: auto;
+            gap: 0.5em;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+          }
+        
+          .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1em;
+          }
+        
+          .sidebarOption {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5em;
+          }
+        
+          .sidebarOption > .MuiSvgIcon-root {
+            margin-right: 0;
+            margin-bottom: 0.25em;
+            font-size: 1.5rem;
+            transition: transform 200ms ease-in-out;
+          }
+        
+          .sidebarOption > h2 {
+            display: none;
+          }
+      }
+      

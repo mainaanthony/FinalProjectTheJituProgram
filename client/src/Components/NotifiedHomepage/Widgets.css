@@ -1,0 +1,91 @@
+.widgets{
+    flex:0.2;
+    background-color:  #EADDCA;;
+    margin-top: 20px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.followersFollowing{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.followUserNames h2{
+    height: 10px;
+}
+.searchFollow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.following{
+    
+
+
+    border-right: 2px solid grey;
+    height: auto;
+    overflow-y:scroll;
+    
+   
+}
+
+/* background-color: #785189; */
+
+/* check on the min-width mundcal */
+.following{
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+.following::-webkit-scrollbar{
+    display: none;
+}
+
+
+.profile_pic{
+    align-self: center;
+    border-radius: 50%;
+    width:50px;
+    height: 50px;
+}
+
+
+.feed_header{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index:100;
+    border: 1px solid var(--twitter-background)
+    padding
+}
+
+
+.follow_details{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+
+
+
+.feed_header > h1{
+    font-size: 20px;
+    font-weight: 800px;
+    background-color: rgb(34, 32, 32);
+}
+
+@media screen and (max-width: 750px) {
+    .widgets {
+      display: none;
+    }
+  }
+  
