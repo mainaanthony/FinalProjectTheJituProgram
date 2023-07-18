@@ -1,0 +1,95 @@
+.commentsFeed{
+    flex:0.6;
+    border-right: 2px solid grey;
+    border-radius: 20px 20px 20px 20px;
+    overflow-y:scroll;
+    background-color: #EADDCA; ;
+    margin-top: 20px;
+    
+}
+/* min-width: 500px; */
+
+
+
+
+
+/* background-color: #785189; */
+
+/* check on the min-width mundcal */
+ .commentsFeed{
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+.commentsFeed::-webkit-scrollbar{
+    display: none;
+} 
+ 
+
+/* crazy */
+.comment {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+ 
+  
+  .comment__body {
+    flex: 1;
+    padding: 10px;
+  }
+  
+#hey{
+    color: green;
+    background-color:black;
+}
+  
+  .comment__footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  .reply, .like {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3em;
+    }
+
+    .liked {
+      color: var(--twitter-color) !important;
+      border: 2px solid black;
+    }
+  
+  .comment__headerDescription {
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  
+  .comment__headerText > h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .comment__badge {
+    font-size: 14px !important;
+    color: var(--twitter-color);
+  }
+  
+  .comment__headerSpecial {
+    font-weight: 600;
+    font-size: 12px;
+    color: gray;
+  }
+  
+  .comment__avatar {
+    padding: 20px;
+  }
+  
+ 
+  

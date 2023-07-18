@@ -1,0 +1,75 @@
+.sidebarOption{
+    display: flex;
+    margin-left: 2px;
+    align-items: center;
+    cursor: pointer;
+    gap:2em;
+    margin-bottom: 20px;
+}
+
+.sidebarOption:hover{
+    background-color: #e8f5fe;
+    border-radius: 30px;
+    color: var(--twitter-color);
+    transition: color 100ms ease-out;
+}
+
+.sidebarOption > .MuiSvgIcon-root{
+    padding: 20px;
+
+}
+
+.sidebarOption > h2{
+    font-weight: 800;
+    font-size: 20px;
+    margin-right: 20px
+}
+
+
+.sidebarOption--active{
+    color: var(--twitter-color);
+}
+
+
+@media screen and (max-width: 1073px) and (min-width: 750px) {
+    .sidebarOption {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      position: relative;
+    }
+  
+    .sidebarOption > .MuiSvgIcon-root {
+      margin-right: 0.5em;
+      transition: transform 200ms ease-in-out;
+    }
+  
+    .sidebarOption > h2 {
+      display: none;
+      font-weight: 800;
+      font-size: 16px;
+      white-space: nowrap;
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 0.5em);
+      transform: translate(-50%, -50%);
+      background-color: white;
+      color: var(--twitter-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease-in-out;
+    }
+  
+    .sidebarOption:hover > .MuiSvgIcon-root {
+      transform: scale(1.2);
+    }
+  
+    .sidebarOption:hover > h2 {
+      display: inline;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  

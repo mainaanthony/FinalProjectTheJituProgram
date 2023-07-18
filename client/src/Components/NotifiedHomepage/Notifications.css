@@ -1,0 +1,151 @@
+
+/* .notificationsFeed{
+    flex: 0.6;
+    margin-top: 20px;
+    border-right: 2px solid grey;
+    overflow-y: scroll;
+    background-color: #EADDCA;
+    border-radius: 20px;
+    padding: 20px;
+   
+}
+
+.notifications{
+    
+
+
+    border-right: 2px solid grey;
+    height: auto;
+    overflow-y:scroll;
+   
+   
+}
+
+
+
+
+.notifications{
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+.notifications::-webkit-scrollbar{
+    display: none;
+}
+
+
+.profile_pic{
+    align-self: center;
+    border-radius: 50%;
+    width:50px;
+    height: 50px;
+}
+
+
+.feed_header{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index:100;
+    border: 1px solid var(--twitter-background)
+    padding
+}
+
+
+.notifications_details{
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    align-items: center;
+
+} */
+/* check on the min-width mundcal */
+
+.notificationsFeed {
+    flex: 0.6;
+    margin-top: 20px;
+    border-right: 2px solid grey;
+    overflow-y: scroll;
+    background-color: #eaddca;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  
+  .notifications {
+    border-right: 2px solid grey;
+    height: auto;
+    overflow-y: scroll;
+  }
+  
+  .notifications::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .profile_pic {
+    align-self: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .feed_header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    border: 1px solid var(--twitter-background);
+  }
+  
+  .notifications_details {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    align-items: center;
+  }
+  
+  .followButton {
+    margin-left: auto;
+  }
+  
+  .followButton button {
+    color: white;
+    font-weight: bold;
+    padding: 6px 12px;
+  }
+  
+  .followButton button.primary {
+    background-color: blue;
+  }
+  
+  .followButton button.secondary {
+    background-color: white;
+    color: blue;
+  }
+  
+  .followUserNames {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nameSection {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .username {
+    color: grey;
+    font-size: 14px;
+  }
+  
+  .descriptionSection {
+    margin-top: 10px;
+  }
+  
+  .descriptionSection p {
+    font-size: 16px;
+  }
+  

@@ -1,0 +1,161 @@
+.profiles {
+  flex: 0.6;
+  margin-top: 20px;
+  border-right: 2px solid grey;
+  overflow-y: scroll;
+  background-color: #EADDCA;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  gap: 40px;
+  margin-top: 2em;
+  margin-bottom: 20px;
+}
+
+.profile-header .profiles-image {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bio{
+  margin-left: 5em;
+  margin-bottom: 2em;
+}
+.profile-info-top {
+  display: flex;
+  align-items: center;
+}
+
+.profileFollowDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profileTabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tab {
+  cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  border-bottom-color: lightblue;
+}
+
+.profileContent {
+  overflow-y: scroll;
+}
+
+.profileContent::-webkit-scrollbar {
+  display: none;
+}
+
+.postProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.followerProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.followingProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.edit-popup-content {
+  width: 500px;
+  height: 700px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.edit-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.current-profile-image {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.upload-icon {
+  cursor: pointer;
+}
+
+.edit-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form-container input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #999;
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+
+.edit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .edit-profile-content {
+    width: 90%;
+    height: 90%;
+    max-width: 500px;
+    max-height: 700px;
+  }
+}
