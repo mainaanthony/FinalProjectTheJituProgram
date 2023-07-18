@@ -38,7 +38,7 @@ module.exports = {
          res.json({
               success: true,
               message: "These are the posts to the users, the user Follows",
-              result: result.recordset[0]
+              result: result
          })
 
            }
@@ -56,9 +56,112 @@ module.exports = {
    
 
 
+  //create a new user
+   GetPostTest:  async (req, res) => {
+    try {
+      const sql = await mssql.connect(config);
+  
+      if (sql.connected) {
+        const userID = req.session?.user.UserID;
+  
+        const request = sql.request();
+  
+        request.input('userId', userID);
+  
+        const result = await request.execute('GetPostsByUserIdFourth');
+        console.log(result);
+  
+        // Extract the necessary data from the result
+        // Extract the necessary data from the result
+      // const posts = result.recordset;
+      // const postFeed = JSON.parse(posts);
+      // console.log("Hellooo" + postFeed)
 
+      // const postFeed = posts.map((post) => {
+      //   console.log('Raw Post:', post); // Add this line for debugging
+      
+      //   const parsedComments = JSON.parse(post.Comments);
+      //   console.log('Parsed Comments:', parsedComments); // Add this line for debugging
+      
+      //   const comments = parsedComments.map((comment) => {
+      //     console.log('Raw Comment:', comment); // Add this line for debugging
+      
+      //     const parsedReplies = JSON.parse(comment.Replies);
+      //     console.log('Parsed Replies:', parsedReplies); // Add this line for debugging
+      
+      //     const replies = parsedReplies.map((reply) => {
+      //       console.log('Raw Reply:', reply); // Add this line for debugging
+      
+      //       return {
+      //         replyId: reply.replyId,
+      //         replyText: reply.replyText,
+      //         totalLikes: reply.totalLikes,
+      //       };
+      //     });
+      
+      //     return {
+      //       commentId: comment.commentId,
+      //       commentText: comment.commentText,
+      //       totalLikes: comment.totalLikes,
+      //       totalReplies: comment.totalReplies,
+      //       replies: replies,
+      //     };
+      //   });
+      
+      //   return {
+      //     postId: post.PostId,
+      //     content: post.PostContent,
+      //     imageUrl: post.PostImageUrl,
+      //     videoUrl: post.PostVideoUrl,
+      //     author: {
+      //       userName: post.AuthorUserName,
+      //       name: post.AuthorName,
+      //       profilePic: post.AuthorProfilePic,
+      //     },
+      //     totalComments: post.TotalComments,
+      //     totalLikes: post.TotalLikes,
+      //     comments: comments,
+      //   };
+      // });
+      
+        res.json({
+          success: true,
+          message: "These are the posts that the user follows",
+          postFeed:result.recordset[0],
+        });
+      }
+    } catch (error) {
+      res.send(error.message);
+    }
+  }
+  
+  ,
 
-
+  getUserInfo : async (req, res) => {
+    try {
+      const sql = await mssql.connect(config);
+  
+      if (sql.connected) {
+        const userID = req.session?.user.UserID;
+  
+        const request = sql.request();
+  
+        request.input('userId', userID);
+  
+        const result = await request.execute('GetUserInformation');
+        console.log(result);
+  
+        res.json({
+          success: true,
+          message: "User information retrieved successfully",
+          result: result.recordset[0]
+        });
+      }
+    } catch (error) {
+      res.send(error.message);
+    }
+  },
+  
 
 
 

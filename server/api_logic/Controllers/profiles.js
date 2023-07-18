@@ -7,20 +7,20 @@ async function updateProfilePic(req, res) {
   try {
     const {   ImageUrl } = req.body;
     const userID = req.session?.user.UserID
-    console.log(userID)
+    // console.log(userID)
 
-    // Connect to the database
-    await mssql.connect(config);
+    // // Connect to the database
+    // await mssql.connect(config);
 
-    // Upload the image and video (if provided) and get the secure URLs
-    let imageSecureUrl = '';
+    // // Upload the image and video (if provided) and get the secure URLs
+    // let imageSecureUrl = '';
     
 
-    if (ImageUrl) {
-      imageSecureUrl = await uploadImage(ImageUrl);
-      console.log(imageSecureUrl)
+    // if (ImageUrl) {
+    //   imageSecureUrl = await uploadImage(ImageUrl);
+    //   console.log(imageSecureUrl)
 
-    }
+    // }
 
    
 
@@ -28,7 +28,7 @@ async function updateProfilePic(req, res) {
     const request = new mssql.Request();
 
     request.input('userId', userID );
-    request.input('newProfilePicUrl', imageSecureUrl);
+    request.input('newProfilePicUrl', ImageUrl);
     
 
     // Execute the stored procedure to create a new post

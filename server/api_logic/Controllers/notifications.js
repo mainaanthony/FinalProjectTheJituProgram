@@ -23,7 +23,7 @@ async function createDisplayNotificationPerUser(req, res) {
 
     res.status(201).json({
          message: 'Notifications to the user',
-        results:results.recordset[0]
+        results:[...results.recordset]
         });
   } catch (error) {
     console.error(error);

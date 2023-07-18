@@ -18,7 +18,7 @@ async function createNewReply(req, res) {
     const request = new mssql.Request();
 
     request.input('UserName', userName);
-    request.input('PostID', PostID);
+    // request.input('PostID', PostID);
     request.input('CommentID', CommentID);
     request.input('ReplyText', ReplyText);
     

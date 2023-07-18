@@ -10,7 +10,7 @@ commentRouter.use(sessionHandler)
 commentRouter.post('/newComment', createNewComment);
 commentRouter.post('/commentLike',createCommentLike)
 commentRouter.get('/count', createRepliesCountPerComment)
-commentRouter.get('/replies', createRepliesPerComment)
+commentRouter.get('/replies/:CommentID',createRepliesPerComment)
 commentRouter.delete('/deleteComment',createDeleteComment)
 commentRouter.get('/likesCount', createCountCommentsLikes)
 

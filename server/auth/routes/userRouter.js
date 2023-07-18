@@ -5,9 +5,9 @@ const { sessionHandler } = require('../middlewares/sessionHandler')
 
 const {postUser, loginUser, logout} = require('../Controllers/users')
 
+//rsrs
 
-
-userRouter.post('/register', postUser);
+userRouter.post('/register', postUser)
 userRouter.post('/login/:loginInput/:Password', loginUser)
 
 userRouter.use(sessionHandler)
