@@ -15,20 +15,7 @@ const new_user_schema = joi.object({
     ContactNumber: joi.string()
         .required()
         ,    
-    DateOfBirth: joi.string()
-        .min(5)
-        .max(30)
-        .required(),
-    DateOfBirth: joi.date()
-        .required(),
-    Gender: joi.string()
-        .required()
-        .min(2)
-        ,    
-    Country: joi.string()
-        .required()
-        .min(2)
-        ,    
+    
     UserName: joi.string()
         .min(3)
         .required(),    

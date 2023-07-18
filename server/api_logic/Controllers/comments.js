@@ -23,7 +23,7 @@ async function createNewComment(req, res) {
     
 
     // Execute the stored procedure to create a new post
-    await request.execute('CreateNewComment');
+     await request.execute('CreateNewComment');
 
     res.status(201).json({ message: 'Comment created successfully' });
   } catch (error) {
@@ -110,7 +110,7 @@ async function createRepliesPerComment(req, res) {
  
 
 try {
-  const { CommentID} = req.body;
+  const { CommentID} = req.params;
 
  
 
@@ -122,17 +122,17 @@ try {
   const request = new mssql.Request();
 
   
-  request.input('commentId', CommentID);
+  request.input('CommentID', CommentID);
   
  
   
 
   // Execute the stored procedure to create a new post
   let results = await request.execute('ViewCommentReplies');
-
+   console.log(results.recordset)
   res.status(201).json({ 
     message: 'This is the  replies in this comment',
-    result: results.recordset
+    result: [...results.recordset]
    });
 } catch (error) {
   console.error(error);

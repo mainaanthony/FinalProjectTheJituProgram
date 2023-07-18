@@ -7,7 +7,12 @@ const session = require("express-session");
 //const cookieParser = require('cookie-parser'); // Add this line
 //const { secure } = require("../auth/Config/emailConfig");
 
-app.use(cors())
+app.use(cors({
+
+        origin:'http://localhost:3000', 
+        credentials:true,       
+        optionSuccessStatus:200
+      }))
 app.use(express.json())
 
 

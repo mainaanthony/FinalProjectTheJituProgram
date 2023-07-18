@@ -114,11 +114,8 @@ const pool = req.pool
      .input("Email", value.Email)
      .input("Password", hashed_pwd)
      .input("ContactNumber", value.ContactNumber)
-     .input("DateOfBirth", value.DateOfBirth)
-     .input("Gender", value.Gender)
-     .input("Country", value.Country)
      .input("UserName", value.UserName)
-     .execute('CreateNewUser')
+     .execute('CreateNewUserAuth')
 
      console.log(results)
      results.rowsAffected[0]> 0 ? res.send({ success: true, message: 'Saved User' }) :

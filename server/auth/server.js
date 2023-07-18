@@ -12,7 +12,11 @@ const {createClient} = require('redis')
 //const { secure } = require("../auth/Config/emailConfig");
 
 
-app.use(cors())
+app.use(cors({
+        origin:'http://localhost:3000',
+        credentials:true,
+        optionsSuccessStatus:200
+}))
 app.use(express.json())
 
 

@@ -12,26 +12,26 @@ async function createNewPost(req, res) {
     await mssql.connect(config);
 
     // Upload the image and video (if provided) and get the secure URLs
-    let imageSecureUrl = '';
-    let videoSecureUrl = '';
+    // let imageSecureUrl = '';
+    // let videoSecureUrl = '';
 
-    if (ImageUrl) {
-      imageSecureUrl = await uploadImage(ImageUrl);
-      console.log(imageSecureUrl)
+    // if (ImageUrl) {
+    //   imageSecureUrl = await uploadImage(ImageUrl);
+    //   console.log(imageSecureUrl)
 
-    }
+    // }
 
-    if (VideoUrl) {
-      videoSecureUrl = await uploadVideo(VideoUrl);
-    }
+    // if (VideoUrl) {
+    //   videoSecureUrl = await uploadVideo(VideoUrl);
+    // }
 
     // Insert the new post into the "posts" table
     const request = new mssql.Request();
 
     request.input('UserName', userName);
     request.input('PostText', PostText);
-    request.input('ImageUrl', imageSecureUrl);
-    request.input('VideoUrl', videoSecureUrl);
+    request.input('ImageUrl', ImageUrl);
+    request.input('VideoUrl', VideoUrl);
 
     // Execute the stored procedure to create a new post
      let results = await request.execute('CreateNewPost');
@@ -166,7 +166,7 @@ async function createCommentsPerPost(req, res) {
  //cc
 
   try {
-    const { PostID} = req.body;
+    const { PostID} = req.params;
   
    
   
@@ -186,10 +186,11 @@ async function createCommentsPerPost(req, res) {
   
     // Execute the stored procedure to create a new post
     let results = await request.execute('ViewPostComments');
+    console.log(results)
   
     res.status(201).json({ 
       message: 'This is the comments in this post',
-      results: results.recordset[0]
+      results: [...results.recordset]
       
     });
   } catch (error) {

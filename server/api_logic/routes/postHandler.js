@@ -10,7 +10,7 @@ postHandlerRouter.use(sessionHandler)
 postHandlerRouter.post('/Post', createNewPost);
 postHandlerRouter.post('/postLike',createPostLike)
 postHandlerRouter.get('/count', createCommentsCountPerPost)
-postHandlerRouter.get('/comments', createCommentsPerPost)
+postHandlerRouter.get('/comments/:PostID', createCommentsPerPost)
 postHandlerRouter.delete('/deletePost',createDeletePost)
 postHandlerRouter.get('/likesCount', createCountPostsLikes)
 
