@@ -5,7 +5,7 @@ const { sessionHandler } = require('../middlewares/sessionHandler')
 
 const {GetPostsFeed,GetPostPerUser, GetPostPerUserBySearch, GetPostTest, getUserInfo} = require('../Controllers/feed')
 
-
+///
 feedRouter.use(sessionHandler)
 feedRouter.get('/userPosts', GetPostPerUser);
 feedRouter.get('/feed',GetPostsFeed)

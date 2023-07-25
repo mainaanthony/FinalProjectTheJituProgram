@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import "./Sidebar.css";
 import { Avatar } from "@mui/material";
 import { BiSearch } from "react-icons/bi";
-import { AiFillHome, AiOutlineTwitter } from "react-icons/ai";
+import { AiFillHome, AiOutlineTwitter, AiOutlineLogout } from "react-icons/ai";
+import {GrUserSettings} from 'react-icons/gr'
 import { MdPermIdentity, MdNotificationsNone, MdMailOutline } from "react-icons/md";
 import { ThemeContext } from './dashboard';
 import axios from 'axios';
@@ -21,11 +22,11 @@ const Sidebar = ({ onComponentClick }) => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('http://localhost:5050/posts/info', {
+        const response = await axios.get('http://localhost:5051/posts/info', {
           withCredentials: true
         });
         setUserInfo(response.data.result);
-       
+       console.log(response)
       } catch (error) {
         console.error(error);
       }
@@ -36,23 +37,19 @@ const Sidebar = ({ onComponentClick }) => {
 
   return (
     <div className="sidebar">
-      <AiOutlineTwitter className="sidebar_twitterIcon" onClick={toggleTheme} />
+      {/* <AiOutlineTwitter className="sidebar_twitterIcon" onClick={toggleTheme} /> */}
 
       <div className="top_header">
         <div className="profile">
-          <Avatar className="profile_pic" src={userInfo.profilePic} />
+          <Avatar className="profile_pic" src={userInfo.ProfilePicUrl} />
           <div className="postNameDetails">
-            <div className="Name">
-              <h1>{userInfo.Name}</h1>
-            </div>
-            <div className="userName">
-              <h1>@{userInfo.userName}</h1>
-            </div>
+              <h3>{userInfo.Name}</h3>
+              <p>@{userInfo.userName}</p>
           </div>
         </div>
       </div>
 
-      <div className="postFollowDetails">
+      {/* <div className="postFollowDetails">
         <div className="details">
           <div className="nameDits">Posts</div>
           <div className="numberDits">{userInfo.TotalPosts}</div>
@@ -67,10 +64,10 @@ const Sidebar = ({ onComponentClick }) => {
           <div className="nameDits">Following</div>
           <div className="numberDits">{userInfo.Followers}</div>
         </div>
-      </div>
+      </div> */}
 
       <div className="links">
-        <SidebarOption
+        <SidebarOption 
           isActive={activeComponent === "feed"}
           onClick={() => handleComponentClick("feed")}
           Icon={AiFillHome}
@@ -89,16 +86,23 @@ const Sidebar = ({ onComponentClick }) => {
           text="Notifications"
         />
         <SidebarOption
-          isActive={activeComponent === "messages"}
-          onClick={() => handleComponentClick("messages")}
-          Icon={MdMailOutline}
-          text="Messages"
+          isActive={activeComponent === "settings"}
+          onClick={() => handleComponentClick("settings")}
+          Icon={GrUserSettings}
+          text="Settings"
         />
         <SidebarOption
           isActive={activeComponent === "profile"}
           onClick={() => handleComponentClick("profile")}
           Icon={MdPermIdentity}
           text="Profiles"
+        />
+
+        <SidebarOption
+          isActive={activeComponent === "logout"}
+          onClick={() => handleComponentClick("logout")}
+          Icon={AiOutlineLogout}
+          text="Logout"
         />
       </div>
     </div>

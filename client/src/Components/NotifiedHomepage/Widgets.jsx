@@ -1,71 +1,92 @@
-import React from 'react'
+import React, { useState, useEffect, useRef} from 'react';
 import './Widgets.css'
+import axios from 'axios';
+import SuggestionHandler from './userSuggeseted'
 import { Avatar,Button} from "@mui/material"
 
 const Widgets =()=> {
+
+
+  const [suggestedInfo,  setSuggestedInfo] = useState([]);
+
+
+
+
+
+
+
+
+
+///use effect for following
+useEffect(() => {
+  const fetchSuggestions = async () => {
+    try {
+      const response = await axios.get('http://localhost:5051/aboutFollow/suggested', {
+        withCredentials: true,
+      });
+      console.log(response.data.data)
+      setSuggestedInfo(response.data.data);//
+     
+    } catch (error) {
+      console.error('Error fetching suggestion users:', error);
+    }
+  };
+
+  fetchSuggestions();
+}, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className='widgets'>
 
-    <div className='followersFollowing'>
-       <div className='followersTitle'>
-         <button>Who to follow</button>
-       </div>
-        
-       <div className='followingTitle'>
-         <button>+</button>
+    
 
-       </div>
+    <div className='searchFollow'>
+     <input className='follow_input' placeholder="Search" type='text'/>
+     </div>
+
+     <div className='following'>
+
+   
+
+{/* creazy */}
+
+
+<div className='tabContent'>
+           <h3>Who you can follow</h3>
+    {suggestedInfo.map(( userSuggested) => (
+          <SuggestionHandler
+            key={ userSuggested.UserID}
+            userSuggested={ userSuggested}
+            // onClick={() => handlePostClick(post)}
+          />
+        ))}
  
      
 
     </div>
 
 
-    <div className='searchFollow'>
-     <input className='follow_input' placeholder="what's happening" type='text'/>
-     </div>
-
-     <div className='following'>
-
-   <div className='follow_details'>
-     <div className='followProfilePic'>
-     <img className='profile_pic' src='C:/Users/tonym/Desktop/FinalJituProject/client/src/assets/tree-736885_1280.jpg'/>
-     </div>
-
-    <div className='followUserNames'>
-  <h2>Hellooo</h2>
-    
-    <h2>Hellooo</h2>
-
-      
-
-    </div>
-    <div className='followButton'>
-    <Button className='tweetBox_tweetButton'>Follow</Button>
-    </div>
-
-   </div>
 
 
+
+
+{/* creazy */}
    {/* another one */}
-   <div className='follow_details'>
-     <div className='followProfilePic'>
-     <img className='profile_pic' src='C:/Users/tonym/Desktop/FinalJituProject/client/src/assets/tree-736885_1280.jpg'/>
-     </div>
-
-    <div className='followUserNames'>
-  <h2>Hellooo</h2>
-    
-    <h2>Hellooo</h2>
-
-     
-
-    </div>
-    <div className='followButton'>
-    <Button className='tweetBox_tweetButton'>Follow</Button>
-    </div>
-
-   </div>
+  
 
 
 

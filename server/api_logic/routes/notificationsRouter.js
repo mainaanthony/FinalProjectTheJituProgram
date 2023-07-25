@@ -3,13 +3,13 @@ const { sessionHandler } = require('../middlewares/sessionHandler')
 
 
 
-const { createDisplayNotificationPerUser, createMarkNotificationAsReadOnView } = require('../Controllers/notifications')
+const { createDisplayNotificationPerUser,createMarkAllNotificationsAsReadOnView, createMarkNotificationAsReadOnView } = require('../Controllers/notifications')
 
 
 notificationsRouter.use(sessionHandler)
 notificationsRouter.get('/displayNotification', createDisplayNotificationPerUser);
- notificationsRouter.get('/markRead',createMarkNotificationAsReadOnView)
-// notificationsRouter.get('/count', createCommentsCountPerPost)
+ notificationsRouter.post('/markRead',createMarkNotificationAsReadOnView)
+ notificationsRouter.post('/allRead', createMarkAllNotificationsAsReadOnView)
 // notificationsRouter.get('/comments', createCommentsPerPost)
 // notificationsRouter.delete('/deletePost',createDeletePost)
 //postHandlerRouter.get('/feed', GetPostsFeed)

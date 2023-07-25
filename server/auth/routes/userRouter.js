@@ -8,8 +8,8 @@ const {postUser, loginUser, logout} = require('../Controllers/users')
 //rsrs
 
 userRouter.post('/register', postUser)
-userRouter.post('/login/:loginInput/:Password', loginUser)
+userRouter.post('/login', loginUser)
 
-userRouter.use(sessionHandler)
+userRouter.use(sessionHandler) 
 userRouter.get("/logout", logout)
 module.exports = userRouter

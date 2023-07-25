@@ -11,7 +11,7 @@ postHandlerRouter.post('/Post', createNewPost);
 postHandlerRouter.post('/postLike',createPostLike)
 postHandlerRouter.get('/count', createCommentsCountPerPost)
 postHandlerRouter.get('/comments/:PostID', createCommentsPerPost)
-postHandlerRouter.delete('/deletePost',createDeletePost)
+postHandlerRouter.delete('/deletePost/:postId',createDeletePost)
 postHandlerRouter.get('/likesCount', createCountPostsLikes)
 
 //

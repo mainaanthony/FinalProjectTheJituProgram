@@ -57,7 +57,7 @@ try {
 
   // Execute the stored procedure to create a new post
   await request.execute('MarkNotificationAsRead');
-
+  console.log(NotificationID)
   res.status(201).json({ message: 'Notification successfully set to read' });
 } catch (error) {
   console.error(error);
@@ -70,4 +70,40 @@ try {
 
 
 
-module.exports = {createDisplayNotificationPerUser, createMarkNotificationAsReadOnView}
+async function createMarkAllNotificationsAsReadOnView(req, res) {
+  
+
+  try {
+    const {NotificationID } = req.body;
+  
+   //const LikedObjectType = 'Post'
+  
+    // Connect to the database
+    await mssql.connect(config);
+  
+   
+    // Insert the new post into the "posts" table
+    const request = new mssql.Request();
+  
+    request.input('NotificationID', NotificationID);
+    
+   
+    
+  
+    // Execute the stored procedure to create a new post
+    await request.execute('MarkAllNotificationsAsRead');
+  
+    res.status(201).json({ message: 'All Notifications successfully set to read' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  } finally {
+    // Close the database connection
+    mssql.close();
+  }
+  }
+  
+
+
+
+module.exports = {createDisplayNotificationPerUser, createMarkAllNotificationsAsReadOnView,createMarkNotificationAsReadOnView}

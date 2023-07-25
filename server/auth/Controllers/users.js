@@ -18,7 +18,7 @@ module.exports = {
 
   loginUser: async (req, res) => {
     // Login validation
-    const { loginInput, Password } = req.params;
+    const { loginInput, Password } = req.body;
   
     try {
       const pool = req.pool;

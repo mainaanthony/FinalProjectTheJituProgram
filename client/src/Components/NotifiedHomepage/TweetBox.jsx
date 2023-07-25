@@ -75,7 +75,7 @@ function TweetBox() {
       VideoUrl: videoUploadUrl,
     };
     const response = await axios.post(
-      "http://localhost:5050/new/Post",
+      "http://localhost:5051/new/Post",
       data,
       {
         withCredentials: true,

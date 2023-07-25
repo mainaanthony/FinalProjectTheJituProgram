@@ -4,7 +4,7 @@ import { Avatar } from '@mui/material';
 //import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import './Search.css';
 
-function Search() {
+function Search({onProfileClick}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [activeTab, setActiveTab] = useState('users'); // 'users' or 'posts'
@@ -16,16 +16,17 @@ function Search() {
     try {
       let url;
       if (activeTab === 'users') {
-        url = `http://localhost:5051/search/users/${searchTerm}`;
+        url = `http://localhost:5051/profile/search/${searchTerm}`;
       } else if (activeTab === 'posts') {
-        url = `http://localhost:5051/search/posts/${searchTerm}`;
+        url = `http://localhost:5051/search/search/${searchTerm}`;
       }
 
       const response = await axios.get(url, {
         withCredentials: true,
       });
-
-      setSearchResults(response.data.data);
+     
+      console.log(response)
+      setSearchResults(response.data.results);
     } catch (error) {
       console.error('Error searching:', error);
     }
@@ -34,6 +35,15 @@ function Search() {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+
+
+  const handleSearchResultClick = (result) => {
+    onProfileClick(result); // Call the onProfileClick function passed from Dashboard.jsx
+    console.log(result.id)
+  };
+
+
+
 
   return (
     <div className="search-container">
@@ -48,7 +58,7 @@ function Search() {
           className={`search-tab ${activeTab === 'posts' ? 'active' : ''}`}
           onClick={() => handleTabChange('posts')}
         >
-          Posts
+        
         </div>
       </div>
 
@@ -61,7 +71,7 @@ function Search() {
 
       <ul className="search-results">
         {searchResults.map((result) => (
-          <li key={result.UserID} className="search-result">
+          <li key={result.UserID} className="search-result"  onClick={() => handleSearchResultClick(result)}>
             <div className="avatar-container">
               <Avatar src={result.ProfilePicture} alt={result.UserName} />
               {/* <VerifiedUserIcon className="verified-icon" /> */}

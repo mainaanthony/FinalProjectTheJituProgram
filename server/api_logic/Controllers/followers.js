@@ -126,7 +126,38 @@ module.exports = {
            
        }
      },
+     getSuggestedUsers: async(req, res)=>{
 
+        try {
+
+            const userEmail  = req.session?.user.Email
+            
+
+            let sql = await mssql.connect(config)
+    
+            if(sql.connected){
+               const request = sql.request();
+               
+               
+               
+               request.input('UserEmail', userEmail )
+          
+
+    
+               let result = await request.execute('GetUserNotFollowedUsers');
+               console.log(result)
+    
+               res.json({
+                   success: true,
+                   message: "Retrieved users that you are suggested to follow",
+                   data:[...result.recordset]
+               })
+            }
+       } catch (error) {
+           res.send(error.message)
+           
+       }
+     },
 
 
 
@@ -169,7 +200,7 @@ module.exports = {
 
             const { FollowedUserName } = req.body
             let sql = await mssql.connect(config)
-    
+            console.log(FollowedUserName)
             if(sql.connected){
                const request = sql.request();
                

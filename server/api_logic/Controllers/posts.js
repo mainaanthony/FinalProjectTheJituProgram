@@ -89,7 +89,7 @@ async function createDeletePost(req, res) {
  
 
 try {
-  const {postId} = req.body;
+  const {postId} = req.params;
 
  
 
@@ -107,6 +107,7 @@ try {
 
   // Execute the stored procedure to create a new post
   await request.execute('SoftDeletePost');
+  console.log(postId)
 
   res.status(201).json({ message: 'Post Deleted successfully' });
 } catch (error) {
@@ -185,7 +186,7 @@ async function createCommentsPerPost(req, res) {
     
   
     // Execute the stored procedure to create a new post
-    let results = await request.execute('ViewPostComments');
+    let results = await request.execute('ViewPostCommentsWithStats');
     console.log(results)
   
     res.status(201).json({ 

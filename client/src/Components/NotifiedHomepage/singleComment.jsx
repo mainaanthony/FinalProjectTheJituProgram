@@ -12,15 +12,15 @@ function Comment({ comment }) {
     const [replyContent, setReplyContent] = useState('');
     const [replies, setReplies] = useState({});
     const [showReplies, setShowReplies] = useState(false);
-    const [replyCount, setReplyCount] = useState(comment.ReplyCount);
-    const [likeCount, setLikeCount] = useState(comment.LikeCount);
+    const [replyCount, setReplyCount] = useState(comment.TotalReplies);
+    const [likeCount, setLikeCount] = useState(comment.TotalCommentLikes);
     const [liked, setLiked] = useState(false);
   
   const handleLikeClick = async (comment) => {
     try {
       const response = await axios.post(
-        `http://localhost:5051/likeComment`,
-        { CommentId: comment.id },
+        `http://localhost:5051/comments/commentLike`,
+        { CommentID: comment.id },
         {
           withCredentials: true,
         }
@@ -62,7 +62,7 @@ function Comment({ comment }) {
   const handleRepliesButtonClick = async (id) => {
     try {
 
-      const response = await axios.get(`http://localhost:5050/comments/replies/${id}`,
+      const response = await axios.get(`http://localhost:5051/comments/replies/${id}`,
       
       
       {
@@ -93,7 +93,7 @@ function Comment({ comment }) {
         ReplyText: replyContent,
       };
 
-      await axios.post('http://localhost:5050/replies/newReply', data, {
+      await axios.post('http://localhost:5051/replies/newReply', data, {
         withCredentials: true,
       });
 
@@ -132,7 +132,7 @@ function Comment({ comment }) {
       </div>
       <div className="comment__footer">
         <div className="reply">
-          <BsReply fontSize="small" onClick={() => handleReplyClick(comment.id)} />
+          <BsReply fontSize="small" onClick={() => handleReplyClick(comment)} />
           <span>{replyCount}</span>
         </div>
 
@@ -163,9 +163,12 @@ function Comment({ comment }) {
         </div>
       )}
 
+
+
+
       {/* Display replies */}
       {showReplies &&( replies.map((reply) => (
-        <div key={reply.ReplyId} className="comment reply-comment">
+        <div key={reply.id} className="comment reply-comment">
           <div className="comment__avatar">
             <Avatar src={reply.ProfilePicture} />
           </div>
@@ -184,6 +187,15 @@ function Comment({ comment }) {
               <div className="comment__headerDescription">
                 <p>{reply.ReplyText}</p>
               </div>
+              {/* <div className="like">
+          <FcLikePlaceholder
+            id='hey'
+            fontSize="small"
+            className={` ${liked ? "liked" : ""}`}
+            onClick={() => handleLikeClick(comment.id)}
+          />
+          <span>{likeCount}</span>
+        </div> */}
             </div>
           </div>
         </div>

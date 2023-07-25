@@ -1,0 +1,46 @@
+.logout {
+    flex: 0.6;
+    margin-top: 20px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+  }
+  
+  .logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logoutButton {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    background-color: var(--twitter-color) !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .logoutButton:hover {
+    background-color: #1da1f2 !important;
+    color: black;
+  }
+  
+  /* Additional styles for the dialog */
+  .MuiDialog-paper {
+    border-radius: 8px;
+  }
+  
+  .MuiDialogTitle-root {
+    text-align: center;
+  }
+  
+  .MuiDialogActions-root {
+    justify-content: center;
+  }
+  

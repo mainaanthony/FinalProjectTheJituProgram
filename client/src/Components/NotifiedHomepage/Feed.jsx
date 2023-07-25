@@ -30,9 +30,11 @@ const Feed =({onPostClick})=> {
 
 <div className="feed_header">
 
- <h2>Home</h2> 
+ <h2>For You</h2> 
+
+ <h2>Following</h2>
       
-<input className='search_input' placeholder="Search " type='text'/>
+{/* <input className='search_input' placeholder="Search " type='text'/> */}
       
     </div>
 

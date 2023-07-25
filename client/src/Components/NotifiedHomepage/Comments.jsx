@@ -7,19 +7,19 @@ function Comments({ post }) {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:5050/new/comments/${post.id}`, {
+        const response = await axios.get(`http://localhost:5051/new/comments/${post.id}`, {
           withCredentials: true,
         });
         setComments(response.data.results);//
        
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error('Error fetching comments:', error);
       }
     };
 
-    fetchPosts();
+    fetchComments();
   }, []);
 
 

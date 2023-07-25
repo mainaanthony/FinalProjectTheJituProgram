@@ -1,12 +1,31 @@
 .profiles {
   flex: 0.6;
   margin-top: 20px;
-  border-right: 2px solid grey;
+  /* border-right: 2px solid grey; */
   overflow-y: scroll;
-  background-color: #EADDCA;
+  background-color: whitesmoke;
   border-radius: 20px;
+  border-top-right-radius: 20px;
   padding: 20px;
 }
+/* background-color: #EADDCA; */
+
+
+.profiles{
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+
+.profiles:-webkit-scrollbar{
+  display: none;
+}
+
+
+
+
 
 .profile-header {
   display: flex;
@@ -16,6 +35,22 @@
   gap: 40px;
   margin-top: 2em;
   margin-bottom: 20px;
+}
+
+.first{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  gap: 40px;
+  margin-top: 2em;
+  margin-bottom: 20px;
+}
+
+
+.post-header{
+  margin-top: 50px;
+  margin-bottom:30px ;
 }
 
 .profile-header .profiles-image {
@@ -28,15 +63,19 @@
 .profile-info {
   display: flex;
   flex-direction: column;
+
 }
 
+
+
 .bio{
-  margin-left: 5em;
+  margin-left: 10em;
   margin-bottom: 2em;
 }
 .profile-info-top {
   display: flex;
   align-items: center;
+ 
 }
 
 .profileFollowDetails {
@@ -127,6 +166,11 @@
   margin-bottom: 10px;
 }
 
+.editProfile{
+  border-bottom:2px solid #999;
+}
+
+
 .upload-icon {
   cursor: pointer;
 }
@@ -149,6 +193,83 @@
   justify-content: flex-end;
   gap: 10px;
 }
+
+
+.end{
+  align-items: flex-end;
+  position: relative;
+}
+
+.dots{
+  justify-content: flex-end;
+}
+
+.dots {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Styles for the delete popup */
+.delete-popup {
+  position: absolute;
+  top: 20px; /* Adjust the distance from the icon */
+  right: -20px; /* Adjust the distance from the icon */
+  background-color: black; /* You can adjust the variable name according to your CSS */
+  color: white;
+  border-radius: 5px 5px 5px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/* modal */
+.post-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-details-content {
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.post-details-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  max-height: 300px;
+
+}
+
+.post-details-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.post-details-footer button {
+  padding: 8px 20px;
+  border: none;
+  background-color: lightblue;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+
+
+
+
 
 /* Media Queries */
 @media screen and (max-width: 768px) {

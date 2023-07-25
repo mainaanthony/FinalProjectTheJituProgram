@@ -1,78 +1,3 @@
-// import React from 'react' 
-
-
-// import { Avatar,Button} from "@mui/material"
-// import './Notifications.css'
-
-
-// function Notifications() {
-//   return (
-//     <div className='notificationsFeed'>
-//          <h1> Notifications</h1>
-        
-
-// <div className='notifications'>
-
-// <div className='notifications_details'>
-//   <div className='notificationsProfilePic'>
-//   <img className='profile_pic' src='C:/Users/tonym/Desktop/FinalJituProject/client/src/assets/tree-736885_1280.jpg'/>
-//   </div>
-
-//  <div className='followUserNames'>
-// <h2>Hellooo</h2>
- 
-//  <h2>Hellooo</h2>
-
-   
-
-//  </div>
-//  <div className='followButton'>
-//  <Button className='tweetBox_tweetButton'>Follow</Button>
-//  </div>
-
-// </div>
-
-
-// {/* another one */}
-// <div className='notifications_details'>
-//   <div className='followProfilePic'>
-//   <img className='profile_pic' src='C:/Users/tonym/Desktop/FinalJituProject/client/src/assets/tree-736885_1280.jpg'/>
-//   </div>
-
-//  <div className='followUserNames'>
-// <h2>Hellooo</h2>
- 
-//  <h2>Hellooo</h2>
-
-  
-
-//  </div>
-//  <div className='followButton'>
-//  <Button className='tweetBox_tweetButton'>Follow</Button>
-//  </div>
-
-// </div>
-
-
-
-
-
-
-
-
-
-
-// </div>
-
-
-
-
-//         </div>
-//   )
-// }
-
-// export default Notifications
-
 import React, { useEffect, useState } from 'react';
 import { Avatar, Button } from '@mui/material';
 import axios from 'axios';
@@ -81,29 +6,56 @@ import './Notifications.css';
 function Notifications() {
   const [notifications, setNotifications] = useState([]);
 
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const response = await axios.get('http://localhost:5050/notify/displayNotification', {
-          withCredentials: true,
-        });
-        setNotifications(response.data.results);
-      } catch (error) {
-        console.error('Error fetching notifications:', error);
-      }
-    };
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get('http://localhost:5051/notify/displayNotification', {
+        withCredentials: true,
+      });
+      setNotifications(response.data.results);
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  };
 
+  useEffect(() => {
     fetchNotifications();
   }, []);
 
-  const handleFollow = (notification) => {
-    // Implement logic to follow/unfollow the user
-    console.log('Follow/Unfollow', notification);
+  const markNotificationAsRead = async (id) => {
+    try {
+
+      const data = {
+        NotificationID: id
+      }
+      await axios.post('http://localhost:5051/notify/markRead', data, { withCredentials: true });
+      // Refresh the notifications after marking as read
+      fetchNotifications();
+    } catch (error) {
+      console.error('Error marking notification as read:', error);
+    }
+  };
+
+  const markAllNotificationsAsRead = async () => {
+    try {
+      const recipientId = notifications.length > 0 ? notifications[0].Recipient_id : null;
+      if (recipientId) {
+        await axios.post('http://localhost:5051/notify/AllRead', { recipientId }, { withCredentials: true });
+        // Refresh the notifications after marking all as read
+        fetchNotifications();
+      }
+    } catch (error) {
+      console.error('Error marking all notifications as read:', error);
+    }
   };
 
   return (
     <div className='notificationsFeed'>
-      <h1>Notifications</h1>
+      <div className='notificationsHeader'>
+        <h1>Notifications</h1>
+        <Button className='markAllAsReadButton' onClick={markAllNotificationsAsRead}>
+          Mark All As Read
+        </Button>
+      </div>
 
       <div className='notifications'>
         {notifications.map((notification) => (
@@ -122,22 +74,11 @@ function Notifications() {
               </div>
             </div>
 
-            {notification.NotificationType !== 'Follow' ? (
-              <div className='followButton'>
-                <Button className='tweetBox_tweetButton'>Follow</Button>
-              </div>
-            ) : (
-              <div className='followButton'>
-                <Button
-                  className='tweetBox_tweetButton'
-                  variant='contained'
-                  color={notification.isFollow ? 'primary' : 'secondary'}
-                  onClick={() => handleFollow(notification)}
-                >
-                  {notification.isFollow ? 'Follow' : 'Unfollow'}
-                </Button>
-              </div>
-            )}
+            <div className='markAsReadButton'>
+              <Button className='tweetBox_tweetButton' onClick={() => markNotificationAsRead(notification.id)}>
+                Mark as Read
+              </Button>
+            </div>
           </div>
         ))}
       </div>

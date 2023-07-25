@@ -1,0 +1,59 @@
+.post-stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  /* Style the icon */
+  .post-stat > svg {
+    color: blue;
+  }
+  
+  .post-stat:hover > svg {
+    color: blueviolet;
+  }
+  
+  .comment-input-wrapper {
+    position: absolute;
+    top: 100%; /* Position the comment input just below the icon */
+    left: 50%; /* Center the comment input horizontally */
+    transform: translateX(-50%); /* Adjust the position to center */
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    padding: 5px; /* Reduce the padding to make it smaller */
+    max-width: 200px; /* Set a maximum width for the comment input */
+  }
+  
+  .comment-input-popup form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .comment-input-popup input {
+    flex: 1;
+    height: 20px; /* Reduce the height of the input */
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding: 5px;
+    margin-right: 5px; /* Reduce the margin */
+  }
+  
+  .comment-input-popup button {
+    padding: 5px 8px; /* Adjust the padding for a smaller button */
+    background-color: var(--twitter-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .comment-input-popup button:hover {
+    opacity: 0.8;
+  }
+  

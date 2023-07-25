@@ -1,9 +1,12 @@
 .widgets{
     flex:0.2;
-    background-color:  #EADDCA;;
+     background-color: whitesmoke;
     margin-top: 20px;
+    /* border: 2px solid grey;*/
     border-radius: 10px 10px 10px 10px;
 }
+
+/* background-color:  #EADDCA; */
 
 .followersFollowing{
     display: flex;
@@ -56,7 +59,9 @@
     height: 50px;
 }
 
-
+.tabContent{
+    gap: 20px;
+}
 .feed_header{
     position: sticky;
     top:0;
@@ -73,7 +78,10 @@
     gap: 10px;
     align-items: center;
 }
-
+.follow_input{
+    border: transparent;
+    height:3em;
+}
 
 
 

@@ -25,6 +25,7 @@ const commentRouter = require('./routes/commentsRouter')
 const replyRouter = require('./routes/replyRouter')
 const notificationsRouter = require('./routes/notificationsRouter')
 const profileRouter = require('./routes/profileRouter')
+const passRouter = require('./routes/passwordRouter')
 const { truncate } = require('fs')
 
 
@@ -66,6 +67,7 @@ const { truncate } = require('fs')
 
 app.use('/aboutFollow', followRouter)
 app.use('/posts', feedRouter)
+app.use('/pass', passRouter)
 app.use('/new', postHandlerRouter)
 app.use('/comments', commentRouter)
 app.use('/replies', replyRouter)
